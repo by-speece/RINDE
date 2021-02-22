@@ -8,9 +8,6 @@ from rich.console import Console
 from rich.table import Table
 from rich.markdown import Markdown
 
-#Modules
-from menuui import MainMenuUI
-
 class color:
    PURPLE = '\033[95m'
    CYAN = '\033[96m'
@@ -23,15 +20,6 @@ class color:
    UNDERLINE = '\033[4m'
    END = '\033[0m'
 
-def MainMenu():
-        pyfiglet.print_figlet("RINDE Menu",font="slant")
-        MainMenuUI()
-        option = input("Select an option:")
-        if option == 1:
-               os.system(cls)
-               pyfiglet.print_figlet("Pacman Settings",font="slant")
-               option = input("Select an option:")
-
 def MainMenuUI():
         console = Console()
         menu_table = Table(show_header=True, header_style="bold magenta")
@@ -40,7 +28,7 @@ def MainMenuUI():
         menu_table.add_column("Last Update Date",style="dim", justify="right")
         menu_table.add_column("Version",style="dim", justify="center")
         menu_table.add_row(
-                "1", "Pacman Settings", "20-02-2021", "0.1"
+                "1",        "Pacman Settings", "20-02-2021", "0.1"
         )
 
         menu_table.add_row(
@@ -72,8 +60,3 @@ def MainMenuUI():
         )
         console.print(menu_table)
 
-
-
-
-
-MainMenu()
