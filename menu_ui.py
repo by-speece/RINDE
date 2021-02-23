@@ -21,6 +21,7 @@ class color:
    UNDERLINE = '\033[4m'
    END = '\033[0m'
 
+
 def MainMenuUI():
         console = Console()
         menu_table = Table(show_header=True, header_style="bold magenta")
@@ -30,7 +31,7 @@ def MainMenuUI():
         menu_table.add_column("Version",style="dim", justify="center")
 
         menu_table.add_row(
-                "1",        "Pacman Settings", "20-02-2021", "0.1"
+                "1",        "Pacman Settings", "23-02-2021", "0.1"
         )
 
         menu_table.add_row(
@@ -78,6 +79,20 @@ def PacmanMenuUI():
                 "2",        "Full Update", "23.02.2021"
         )
 
+        menu_table.add_row(
+                "3",        "Pacman Packages", "23.02.2021"
+        )
+
         console.print(menu_table)
 
+def PacmanPackagesMenuUI():
+        console = Console()
+        menu_table = Table(show_header=True, header_style="bold magenta")
+        menu_table.add_column("Number", justify="left")
+        menu_table.add_column("Package Name", justify="left")
+        menu_table.add_column("Last Update Date",style="dim", justify="right")
 
+        menu_table.add_row(
+                "1"        "",        ""
+        )
+        console.print(menu_table)

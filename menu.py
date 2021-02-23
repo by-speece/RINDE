@@ -27,9 +27,11 @@ class color:
    UNDERLINE = '\033[4m'
    END = '\033[0m'
 
+console = Console()
+
 def MainMenu():
       clear()
-      pyfiglet.print_figlet("RINDE Menu",font="slant")
+      pyfiglet.print_figlet("RINDE MENU",font="slant")
       MainMenuUI()
       MainMenuInput = input("Select an option:")
       if MainMenuInput == "1":
@@ -40,11 +42,15 @@ def PacmanMenu():
          pyfiglet.print_figlet("Pacman Settings",font="slant")
          PacmanMenuUI()
          PacmanMenuInput = input("Select an option:")
-         if  PacmanMenuInput == "1":
+
+         if PacmanMenuInput == "1":
+            clear()
             os.system('sudo pacman -Syu --noconfirm')
             print('Update Complete')
             MainMenu()
-         if  PacmanMenuInput == "2":
+
+         if PacmanMenuInput == "2":
+            clear()
             print('Updating Mirrorlist......')
             os.system('sudo reflector --verbose --latest 10 --sort rate --save /etc/pacman.d/mirrorlist')
             print('Updating Mirrorlist Completed!')
@@ -56,5 +62,10 @@ def PacmanMenu():
             os.system('sudo pacman -Rs $(pacman -Qtdq) --noconfirm')
             print('Cleaning Pacman and System Completed!')
             MainMenu()
+
+         if PacmanMenuInput == "3":
+            clear()
+            PacmanPackagesMenuUI()
+
 
 MainMenu()
