@@ -28,6 +28,7 @@ def MainMenuUI():
         menu_table.add_column("Module Name", justify="left")
         menu_table.add_column("Last Update Date",style="dim", justify="right")
         menu_table.add_column("Version",style="dim", justify="center")
+
         menu_table.add_row(
                 "1",        "Pacman Settings", "20-02-2021", "0.1"
         )
@@ -59,5 +60,24 @@ def MainMenuUI():
         menu_table.add_row(
                 "8",        "Exit", "Work in Progress", "-"
         )
+
         console.print(menu_table)
+
+def PacmanMenuUI():
+        console = Console()
+        menu_table = Table(show_header=True, header_style="bold magenta")
+        menu_table.add_column("Number", justify="left")
+        menu_table.add_column("Module Name", justify="left")
+        menu_table.add_column("Last Update Date",style="dim", justify="right")
+
+        menu_table.add_row(
+                "1",        "Update Manager", "23.02.2021"
+        )
+
+        menu_table.add_row(
+                "2",        "Full Update", "23.02.2021"
+        )
+
+        console.print(menu_table)
+
 

@@ -8,9 +8,13 @@ from rich.console import Console
 from rich.table import Table
 from rich.markdown import Markdown
 
-#Modules
-from menuui import MainMenuUI
+#UI Modules
+from menu_ui import *
 
+#Commands
+from custom_commands import *
+
+#Colors
 class color:
    PURPLE = '\033[95m'
    CYAN = '\033[96m'
@@ -24,56 +28,33 @@ class color:
    END = '\033[0m'
 
 def MainMenu():
-        pyfiglet.print_figlet("RINDE Menu",font="slant")
-        MainMenuUI()
-        option = input("Select an option:")
-        if option == 1:
-               os.system(cls)
-               pyfiglet.print_figlet("Pacman Settings",font="slant")
-               option = input("Select an option:")
+      clear()
+      pyfiglet.print_figlet("RINDE Menu",font="slant")
+      MainMenuUI()
+      MainMenuInput = input("Select an option:")
+      if MainMenuInput == "1":
+         PacmanMenu()
 
-def MainMenuUI():
-        console = Console()
-        menu_table = Table(show_header=True, header_style="bold magenta")
-        menu_table.add_column("Number", justify="left")
-        menu_table.add_column("Module Name", justify="left")
-        menu_table.add_column("Last Update Date",style="dim", justify="right")
-        menu_table.add_column("Version",style="dim", justify="center")
-        menu_table.add_row(
-                "1", "Pacman Settings", "20-02-2021", "0.1"
-        )
-
-        menu_table.add_row(
-                "2",  "Yet another Yogurth", "Work in Progress", "-"
-        )
-
-        menu_table.add_row(
-                "3",   "Settings/Autorun Manager", "Work in Progress", "-"
-        )
-
-        menu_table.add_row(
-                "4",    "Arch Helper", "Work in Progress", "-"
-        )
-
-        menu_table.add_row(
-                "5",     "Power Manager", "Work in Progress", "-"
-        )
-
-        menu_table.add_row(
-                "6",     "Rice Manager", "Work in Progress", "-"
-        )
-
-        menu_table.add_row(
-                "7",       "Update Manager", "Work in Progress", "-"
-        )
-
-        menu_table.add_row(
-                "8",        "Exit", "Work in Progress", "-"
-        )
-        console.print(menu_table)
-
-
-
-
+def PacmanMenu():
+         clear()
+         pyfiglet.print_figlet("Pacman Settings",font="slant")
+         PacmanMenuUI()
+         PacmanMenuInput = input("Select an option:")
+         if  PacmanMenuInput == "1":
+            os.system('sudo pacman -Syu --noconfirm')
+            print('Update Complete')
+            MainMenu()
+         if  PacmanMenuInput == "2":
+            print('Updating Mirrorlist......')
+            os.system('sudo reflector --verbose --latest 10 --sort rate --save /etc/pacman.d/mirrorlist')
+            print('Updating Mirrorlist Completed!')
+            print('Updating Repository Database and System......')
+            os.system('sudo pacman -Syu --noconfirm')
+            print('Updating Repository Database and System Completed!')
+            print('Cleaning Pacman and System......')
+            os.system('sudo pacman -Sc --noconfirm')
+            os.system('sudo pacman -Rs $(pacman -Qtdq) --noconfirm')
+            print('Cleaning Pacman and System Completed!')
+            MainMenu()
 
 MainMenu()
