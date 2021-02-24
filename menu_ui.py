@@ -21,6 +21,14 @@ class color:
    UNDERLINE = '\033[4m'
    END = '\033[0m'
 
+def PresstoExitUI():
+        console = Console()
+        menu_table = Table(show_header=True, header_style="bold magenta")
+        menu_table.add_column("_____Special Functions_____", justify = "center")
+        menu_table.add_row(
+                "Press E to Exit"
+        )
+        console.print(menu_table)
 
 def MainMenuUI():
         console = Console()
@@ -47,7 +55,7 @@ def MainMenuUI():
         )
 
         menu_table.add_row(
-                "5",     "Power Manager", "Work in Progress", "-"
+                "5",     "Power Manager", "24-02-2021", "0.1"
         )
 
         menu_table.add_row(
@@ -56,10 +64,6 @@ def MainMenuUI():
 
         menu_table.add_row(
                 "7",       "Update Manager", "Work in Progress", "-"
-        )
-
-        menu_table.add_row(
-                "8",        "Exit", "Work in Progress", "-"
         )
 
         console.print(menu_table)
@@ -93,6 +97,28 @@ def PacmanPackagesMenuUI():
         menu_table.add_column("Last Update Date",style="dim", justify="right")
 
         menu_table.add_row(
-                "1"        "",        ""
+                "1",        "",        ""
         )
         console.print(menu_table)
+
+
+def PowerMenuUI():
+        console = Console()
+        menu_table = Table(show_header=True, header_style="bold magenta")
+        menu_table.add_column("Number", justify="left")
+        menu_table.add_column("Power Setting", justify="left")
+        menu_table.add_column("Last Update Date",style="dim", justify="right")
+
+        menu_table.add_row(
+                "1",        "Shutdown",        "N/A"
+        )
+
+        menu_table.add_row(
+                "2",        "Restart",        "N/A"
+        )
+        menu_table.add_row(
+                "3",        "Suspend",        "N/A"
+        )
+
+        console.print(menu_table)
+

@@ -33,9 +33,17 @@ def MainMenu():
       clear()
       pyfiglet.print_figlet("RINDE MENU",font="slant")
       MainMenuUI()
+      PresstoExitUI()
       MainMenuInput = input("Select an option:")
       if MainMenuInput == "1":
          PacmanMenu()
+
+      if MainMenuInput == "5":
+         PowerMenu()
+
+      if MainMenuInput == "E":
+         clear()
+         exit()
 
 def PacmanMenu():
          clear()
@@ -67,5 +75,22 @@ def PacmanMenu():
             clear()
             PacmanPackagesMenuUI()
 
+def PowerMenu():
+         clear()
+         pyfiglet.print_figlet("Power Menu",font="slant")
+         PowerMenuUI()
+         PowerMenuInput = input("Select an option:")
+
+         if PowerMenuInput == "1":
+            os.system("shutdown now")
+            exit()
+
+         if PowerMenuInput == "2":
+            os.system("reboot now")
+            exit()
+
+         if PowerMenuInput == "3":
+            os.system("systemctl suspend")
+            MainMenu()
 
 MainMenu()
