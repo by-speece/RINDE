@@ -7,6 +7,7 @@ import rich
 from rich.console import Console
 from rich.table import Table
 from rich.markdown import Markdown
+from rich.panel import Panel
 
 #Colors
 class color:
@@ -20,15 +21,6 @@ class color:
    BOLD = '\033[1m'
    UNDERLINE = '\033[4m'
    END = '\033[0m'
-
-def PresstoExitUI():
-        console = Console()
-        menu_table = Table(show_header=True, header_style="bold magenta")
-        menu_table.add_column("_____Special Functions_____", justify = "center")
-        menu_table.add_row(
-                "Press E to Exit"
-        )
-        console.print(menu_table)
 
 def MainMenuUI():
         console = Console()

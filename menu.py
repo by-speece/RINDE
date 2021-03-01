@@ -4,10 +4,11 @@ import os
 import rich
 
 #Rich
+from rich import print
 from rich.console import Console
 from rich.table import Table
 from rich.markdown import Markdown
-
+from rich.layout import Layout
 #UI Modules
 from menu_ui import *
 
@@ -28,12 +29,12 @@ class color:
    END = '\033[0m'
 
 console = Console()
+layout = Layout()
 
 def MainMenu():
       clear()
       pyfiglet.print_figlet("RINDE MENU",font="slant")
       MainMenuUI()
-      PresstoExitUI()
       MainMenuInput = input("Select an option:")
       if MainMenuInput == "1":
          PacmanMenu()
@@ -93,4 +94,12 @@ def PowerMenu():
             os.system("systemctl suspend")
             MainMenu()
 
-MainMenu()
+
+
+layout.split(
+   Layout(MainMenuUI(), name="Left"),
+   Layout(name="Right"),
+   direction="horizontal"
+)
+
+print(layout)
