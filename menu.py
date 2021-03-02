@@ -9,6 +9,8 @@ from rich.console import Console
 from rich.table import Table
 from rich.markdown import Markdown
 from rich.layout import Layout
+from rich.align import Align
+
 #UI Modules
 from menu_ui import *
 
@@ -33,7 +35,7 @@ layout = Layout()
 
 def MainMenu():
       clear()
-      pyfiglet.print_figlet("RINDE MENU",font="slant")
+
       MainMenuUI()
       MainMenuInput = input("Select an option:")
       if MainMenuInput == "1":
@@ -94,12 +96,25 @@ def PowerMenu():
             os.system("systemctl suspend")
             MainMenu()
 
-
-
 layout.split(
-   Layout(MainMenuUI(), name="Left"),
-   Layout(name="Right"),
+   Layout(Align.center("RINDE's not Desktop Enviroment", style="bold red"), name="Title"),
+   Layout(name="Up"),
+   Layout(name="Down"),
+)
+
+
+layout["Up"].split(
+   Layout(Align.center(HotKeysUI()), name="UpLeft"),
+   Layout(Align.center(MainMenuUI()), name="UpRight"),
    direction="horizontal"
 )
+
+layout["Down"].split(
+   Layout(name="DownLeft"),
+   Layout(name="DownRight"),
+   direction="horizontal"
+)
+
+layout["DownLeft"].size = 63
 
 print(layout)

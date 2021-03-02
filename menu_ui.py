@@ -22,9 +22,30 @@ class color:
    UNDERLINE = '\033[4m'
    END = '\033[0m'
 
+
+def HotKeysUI():
+        menu_table = Table(title = "Hotkeys", header_style="bold magenta")
+        menu_table.add_column("First Key", justify="center" )
+        menu_table.add_column("Second Key", justify="center")
+        menu_table.add_column("Function", justify="center")
+
+        menu_table.add_row(
+                "Alt",        "S",        "Suspend"
+        )
+
+        menu_table.add_row(
+                "Alt",        "U",        "Full Update"
+        )
+
+        menu_table.add_row(
+                ""
+        )
+
+        return menu_table
+
+
 def MainMenuUI():
-        console = Console()
-        menu_table = Table(show_header=True, header_style="bold magenta")
+        menu_table = Table(title="Main Menu", header_style="bold magenta")
         menu_table.add_column("Number", justify="left")
         menu_table.add_column("Module Name", justify="left")
         menu_table.add_column("Last Update Date",style="dim", justify="right")
@@ -58,7 +79,9 @@ def MainMenuUI():
                 "7",       "Update Manager", "Work in Progress", "-"
         )
 
-        console.print(menu_table)
+        return menu_table
+
+
 
 def PacmanMenuUI():
         console = Console()
