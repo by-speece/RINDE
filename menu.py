@@ -12,10 +12,10 @@ from rich.layout import Layout
 from rich.align import Align
 
 #UI Modules
-from menu_ui import *
+from modules.menu_ui import *
 
 #Commands
-from custom_commands import *
+from modules.custom_commands import *
 
 #Colors
 class color:
@@ -31,18 +31,34 @@ class color:
    END = '\033[0m'
 
 console = Console()
-layout = Layout()
 
 def MainMenu():
       clear()
-
-      MainMenuUI()
+      console.print(Align.center(MainMenuUI()))
       MainMenuInput = input("Select an option:")
       if MainMenuInput == "1":
          PacmanMenu()
 
+      if MainMenuInput == "2":
+         YayMenu()
+
+      if MainMenuInput == "3":
+         AppsConfigsMenu()
+
+      if MainMenuInput == "4":
+         ExtratoolsMenu()
+
       if MainMenuInput == "5":
+         SettingsMenu()
+
+      if MainMenuInput == "6":
+         RindeSettingsMenu()
+
+      if MainMenuInput == "P":
          PowerMenu()
+
+      if MainMenuInput == "S":
+         RindeShell()
 
       if MainMenuInput == "E":
          clear()
@@ -50,10 +66,8 @@ def MainMenu():
 
 def PacmanMenu():
          clear()
-         pyfiglet.print_figlet("Pacman Settings",font="slant")
-         PacmanMenuUI()
+         console.print(Align.center(PacmanMenuUI()))
          PacmanMenuInput = input("Select an option:")
-
          if PacmanMenuInput == "1":
             clear()
             os.system('sudo pacman -Syu --noconfirm')
@@ -78,10 +92,10 @@ def PacmanMenu():
             clear()
             PacmanPackagesMenuUI()
 
+
 def PowerMenu():
          clear()
-         pyfiglet.print_figlet("Power Menu",font="slant")
-         PowerMenuUI()
+         console.print(Align.center(PowerMenuUI()))
          PowerMenuInput = input("Select an option:")
 
          if PowerMenuInput == "1":
@@ -96,25 +110,8 @@ def PowerMenu():
             os.system("systemctl suspend")
             MainMenu()
 
-layout.split(
-   Layout(Align.center("RINDE's not Desktop Enviroment", style="bold red"), name="Title"),
-   Layout(name="Up"),
-   Layout(name="Down"),
-)
 
 
-layout["Up"].split(
-   Layout(Align.center(HotKeysUI()), name="UpLeft"),
-   Layout(Align.center(MainMenuUI()), name="UpRight"),
-   direction="horizontal"
-)
+MainMenu()
 
-layout["Down"].split(
-   Layout(name="DownLeft"),
-   Layout(name="DownRight"),
-   direction="horizontal"
-)
 
-layout["DownLeft"].size = 63
-
-print(layout)
