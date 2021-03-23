@@ -1,5 +1,4 @@
 #Import
-import pyfiglet
 import os
 import rich
 
@@ -25,7 +24,7 @@ class color:
 
 
 def MainMenuUI():
-        menu_table = Table()
+        menu_table = Table(show_lines=True)
         menu_table.add_column("Number", justify="center")
         menu_table.add_column("Module Name", justify="center")
 
@@ -55,15 +54,15 @@ def MainMenuUI():
         )
 
         menu_table.add_row(
-                "P",     "Power Menu"
+                "p",     "Power Menu"
         )
 
         menu_table.add_row(
-                "S",      "RINDE Shell"
+                "s",      "RINDE Shell"
         )
 
         menu_table.add_row(
-                "E",       "Exit"
+                "q",       "Quit"
         )
 
         return menu_table
@@ -88,6 +87,14 @@ def PacmanMenuUI():
                 "3",        "Pacman Packs Packages"
         )
 
+        menu_table.add_row(
+                "b",        "MainMenu"
+        )
+
+        menu_table.add_row(
+                "q",        "Quit"
+        )
+
         return menu_table
 
 
@@ -101,7 +108,16 @@ def PacmanPackagesMenuUI():
         menu_table.add_row(
                 "1",        ""
         )
-        console.print(menu_table)
+
+        menu_table.add_row(
+                "b",        "MainMenu"
+        )
+
+        menu_table.add_row(
+                "q",        "Quit"
+        )
+        return menu_table
+
 
 
 
@@ -122,5 +138,4 @@ def PowerMenuUI():
         )
 
         return menu_table
-
 

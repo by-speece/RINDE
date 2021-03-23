@@ -1,5 +1,4 @@
 #Import
-import pyfiglet
 import os
 import rich
 
@@ -7,10 +6,13 @@ import rich
 from rich.console import Console
 from rich.table import Table
 from rich.markdown import Markdown
+from rich.style import Style
 
 
 
 def clear():
   os.system('clear')
 
+def Hotkeys():
+  console.print()
 

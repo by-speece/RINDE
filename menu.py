@@ -1,7 +1,8 @@
 #Import
-import pyfiglet
+
 import os
 import rich
+import pynput
 
 #Rich
 from rich import print
@@ -11,11 +12,17 @@ from rich.markdown import Markdown
 from rich.layout import Layout
 from rich.align import Align
 
+
+#Readchar - Key Reading Without Enter
+import readchar
+
 #UI Modules
-from modules.menu_ui import *
+from menu_ui import *
+
 
 #Commands
 from modules.custom_commands import *
+from modules.info import *
 
 #Colors
 class color:
@@ -31,11 +38,30 @@ class color:
    END = '\033[0m'
 
 console = Console()
+current = set()
+layout = Layout()
 
 def MainMenu():
       clear()
-      console.print(Align.center(MainMenuUI()))
-      MainMenuInput = input("Select an option:")
+      layout = Layout()
+
+      layout.split(
+         Layout(name="left"),
+         Layout(Panel(Align.center(MainMenuUI(), vertical="middle"))),
+         direction="horizontal"
+      )
+
+      layout["left"].split(
+         Layout(Panel(Align.center(Author(), vertical="middle"))),
+         Layout(name="down")
+      )
+      layout["down"].ratio = 0.6
+      layout["down"].update(
+         Panel(Align.center(Coffee(), vertical="middle"))
+      )
+
+      print(layout)
+      MainMenuInput = readchar.readkey()
       if MainMenuInput == "1":
          PacmanMenu()
 
@@ -46,7 +72,7 @@ def MainMenu():
          AppsConfigsMenu()
 
       if MainMenuInput == "4":
-         ExtratoolsMenu()
+         ExtraToolsMenu()
 
       if MainMenuInput == "5":
          SettingsMenu()
@@ -54,20 +80,23 @@ def MainMenu():
       if MainMenuInput == "6":
          RindeSettingsMenu()
 
-      if MainMenuInput == "P":
+      if MainMenuInput == "p":
          PowerMenu()
+      
+      if MainMenuInput == "r":
+         MainMenu()
 
-      if MainMenuInput == "S":
-         RindeShell()
-
-      if MainMenuInput == "E":
+      if MainMenuInput == "q":
          clear()
          exit()
+
+      else:
+         MainMenu()
 
 def PacmanMenu():
          clear()
          console.print(Align.center(PacmanMenuUI()))
-         PacmanMenuInput = input("Select an option:")
+         PacmanMenuInput = readchar.readkey()
          if PacmanMenuInput == "1":
             clear()
             os.system('sudo pacman -Syu --noconfirm')
@@ -91,12 +120,22 @@ def PacmanMenu():
          if PacmanMenuInput == "3":
             clear()
             PacmanPackagesMenuUI()
+         
+         if PacmanMenuInput == "b":
+            MainMenu()
+
+         if PacmanMenuInput == "q":
+            clear()
+            exit()
+         
+         else:
+            PacmanMenu()
 
 
 def PowerMenu():
          clear()
          console.print(Align.center(PowerMenuUI()))
-         PowerMenuInput = input("Select an option:")
+         PowerMenuInput = readchar.readkey()
 
          if PowerMenuInput == "1":
             os.system("shutdown now")
@@ -109,7 +148,21 @@ def PowerMenu():
          if PowerMenuInput == "3":
             os.system("systemctl suspend")
             MainMenu()
+         
+         if PowerMenuInput == "b":
+            MainMenu()
 
+         if PowerMenuInput == "q":
+            clear()
+            exit()
+
+         else:
+            PowerMenu()
+
+
+def ExtraToolsMenu():
+         clear()
+         console.print(Align.center(ExtraToolsMenuUI()))
 
 
 MainMenu()
