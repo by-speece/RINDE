@@ -23,10 +23,10 @@ def Author():
                 "Code Name",     "Spring Rain"
         )
         menu_table.add_row(
-                "Version",       "0.2"
+                "Version",       "0.2.1-unstable"
         )
         menu_table.add_row(
-                "Build",        "220421"
+                "Build",        "250321"
         )
         menu_table.add_row(
                 "Licence",      "GPL3"

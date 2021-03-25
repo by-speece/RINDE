@@ -1,4 +1,5 @@
 #Import
+
 import os
 import rich
 
@@ -7,6 +8,20 @@ from rich.console import Console
 from rich.table import Table
 from rich.markdown import Markdown
 from rich.panel import Panel
+from rich.layout import Layout
+from rich.align import Align
+
+#Readchar - Key Reading Without Enter
+import readchar
+
+
+#UI Modules
+from Layout.info import *
+from Layout.menu_ui import *
+
+#Commands
+from modules.custom_commands import *
+
 
 #Colors
 class color:
@@ -21,6 +36,9 @@ class color:
    UNDERLINE = '\033[4m'
    END = '\033[0m'
 
+###############################################################
+#########################UI SECTION############################
+###############################################################
 
 
 def MainMenuUI():
@@ -138,4 +156,79 @@ def PowerMenuUI():
         )
 
         return menu_table
+
+
+###############################################################
+#########################Layout Section########################
+###############################################################
+
+def MainMenuLayout():
+      #Layout-Start
+      #########################################################
+      layout = Layout()
+
+      layout.split(
+         Layout(name="left"),
+         Layout(Panel(Align.center(MainMenuUI(), vertical="middle"))),
+         direction="horizontal"
+      )
+
+      layout["left"].split(
+         Layout(Panel(Align.center(Author(), vertical="middle"))),
+         Layout(name="down")
+      )
+      layout["down"].ratio = 0.6
+      layout["down"].update(
+         Panel(Align.center(Coffee(), vertical="middle"))
+      )
+
+      print(layout)
+      #########################################################
+      #Layout-END
+
+def PacmanMenuLayout():
+      #Layout-Start
+      #########################################################
+      layout = Layout()
+
+      layout.split(
+         Layout(name="left"),
+         Layout(Panel(Align.center(PacmanMenuUI(), vertical="middle"))),
+         direction="horizontal"
+      )
+
+      layout["left"].split(
+         Layout(Panel(Align.center(Author(), vertical="middle"))),
+         Layout(name="down")
+      )
+      layout["down"].ratio = 0.6
+      layout["down"].update(
+         Panel(Align.center(Coffee(), vertical="middle"))
+      )
+      print(layout)
+      #########################################################
+      #Layout-END
+
+def PowerMenuLayout():
+      #Layout-Start
+      #########################################################
+      layout = Layout()
+
+      layout.split(
+         Layout(name="left"),
+         Layout(Panel(Align.center(PowerMenuUI(), vertical="middle"))),
+         direction="horizontal"
+      )
+
+      layout["left"].split(
+         Layout(Panel(Align.center(Author(), vertical="middle"))),
+         Layout(name="down")
+      )
+      layout["down"].ratio = 0.6
+      layout["down"].update(
+         Panel(Align.center(Coffee(), vertical="middle"))
+      )
+      print(layout)
+      #########################################################
+      #Layout-END
 

@@ -2,27 +2,26 @@
 
 import os
 import rich
-import pynput
 
 #Rich
-from rich import print
 from rich.console import Console
 from rich.table import Table
 from rich.markdown import Markdown
+from rich.panel import Panel
 from rich.layout import Layout
 from rich.align import Align
-
 
 #Readchar - Key Reading Without Enter
 import readchar
 
 #UI Modules
-from menu_ui import *
+from Layout.menu_ui import *
+from Layout.info import *
 
 
 #Commands
 from modules.custom_commands import *
-from modules.info import *
+
 
 #Colors
 class color:
@@ -43,24 +42,7 @@ layout = Layout()
 
 def MainMenu():
       clear()
-      layout = Layout()
-
-      layout.split(
-         Layout(name="left"),
-         Layout(Panel(Align.center(MainMenuUI(), vertical="middle"))),
-         direction="horizontal"
-      )
-
-      layout["left"].split(
-         Layout(Panel(Align.center(Author(), vertical="middle"))),
-         Layout(name="down")
-      )
-      layout["down"].ratio = 0.6
-      layout["down"].update(
-         Panel(Align.center(Coffee(), vertical="middle"))
-      )
-
-      print(layout)
+      MainMenuLayout()
       MainMenuInput = readchar.readkey()
       if MainMenuInput == "1":
          PacmanMenu()
@@ -94,47 +76,47 @@ def MainMenu():
          MainMenu()
 
 def PacmanMenu():
+      clear()
+      PacmanMenuLayout()
+      PacmanMenuInput = readchar.readkey()
+      if PacmanMenuInput == "1":
          clear()
-         console.print(Align.center(PacmanMenuUI()))
-         PacmanMenuInput = readchar.readkey()
-         if PacmanMenuInput == "1":
-            clear()
-            os.system('sudo pacman -Syu --noconfirm')
-            print('Update Complete')
-            MainMenu()
+         os.system('sudo pacman -Syu --noconfirm')
+         print('Update Complete')
+         MainMenu()
 
-         if PacmanMenuInput == "2":
-            clear()
-            print('Updating Mirrorlist......')
-            os.system('sudo reflector --verbose --latest 10 --sort rate --save /etc/pacman.d/mirrorlist')
-            print('Updating Mirrorlist Completed!')
-            print('Updating Repository Database and System......')
-            os.system('sudo pacman -Syu --noconfirm')
-            print('Updating Repository Database and System Completed!')
-            print('Cleaning Pacman and System......')
-            os.system('sudo pacman -Sc --noconfirm')
-            os.system('sudo pacman -Rs $(pacman -Qtdq) --noconfirm')
-            print('Cleaning Pacman and System Completed!')
-            MainMenu()
+      if PacmanMenuInput == "2":
+         clear()
+         print('Updating Mirrorlist......')
+         os.system('sudo reflector --verbose --latest 10 --sort rate --save /etc/pacman.d/mirrorlist')
+         print('Updating Mirrorlist Completed!')
+         print('Updating Repository Database and System......')
+         os.system('sudo pacman -Syu --noconfirm')
+         print('Updating Repository Database and System Completed!')
+         print('Cleaning Pacman and System......')
+         os.system('sudo pacman -Sc --noconfirm')
+         os.system('sudo pacman -Rs $(pacman -Qtdq) --noconfirm')
+         print('Cleaning Pacman and System Completed!')
+         MainMenu()
 
-         if PacmanMenuInput == "3":
-            clear()
-            PacmanPackagesMenuUI()
+      if PacmanMenuInput == "3":
+         clear()
+         PacmanPackagesMenuUI()
+      
+      if PacmanMenuInput == "b":
+         MainMenu()
+
+      if PacmanMenuInput == "q":
+         clear()
+         exit()
          
-         if PacmanMenuInput == "b":
-            MainMenu()
-
-         if PacmanMenuInput == "q":
-            clear()
-            exit()
-         
-         else:
-            PacmanMenu()
+      else:
+         PacmanMenu()
 
 
 def PowerMenu():
          clear()
-         console.print(Align.center(PowerMenuUI()))
+         PowerMenuLayout()
          PowerMenuInput = readchar.readkey()
 
          if PowerMenuInput == "1":
