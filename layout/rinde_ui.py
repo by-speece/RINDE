@@ -16,12 +16,9 @@ import readchar
 
 
 #UI Modules
-from Layout.info import *
-from Layout.menu_ui import *
-
-#Commands
-from modules.custom_commands import *
-
+from layout.info import *
+from layout.rinde_ui import *
+from layout.custom_commands import *
 
 #Colors
 class color:
@@ -42,7 +39,7 @@ class color:
 
 
 def MainMenuUI():
-        menu_table = Table(show_lines=True)
+        menu_table = Table(show_lines=True, header_style="bold magenta")
         menu_table.add_column("Number", justify="center")
         menu_table.add_column("Module Name", justify="center")
 
@@ -89,7 +86,7 @@ def MainMenuUI():
 
 def PacmanMenuUI():
         console = Console()
-        menu_table = Table(show_header=True, header_style="bold magenta")
+        menu_table = Table(show_lines=True, show_header=True, header_style="bold magenta")
         menu_table.add_column("Number", justify="center")
         menu_table.add_column("Module Name", justify="center")
 

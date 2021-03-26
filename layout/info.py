@@ -15,7 +15,7 @@ from rich.text import Text
 
 
 def Author():
-        menu_table = Table(show_lines=True)
+        menu_table = Table(show_lines=True, header_style="bold magenta")
         menu_table.add_column("Author", justify="center")
         menu_table.add_column("by-speece", justify="center")
 
@@ -23,10 +23,10 @@ def Author():
                 "Code Name",     "Spring Rain"
         )
         menu_table.add_row(
-                "Version",       "0.2.1-unstable"
+                "Version",       "0.2.2-unstable"
         )
         menu_table.add_row(
-                "Build",        "250321"
+                "Build",        "260321"
         )
         menu_table.add_row(
                 "Licence",      "GPL3"
@@ -37,8 +37,8 @@ def Author():
         return menu_table
 
 def Coffee():
-        menu_table = Table()
-        menu_table.add_column("<-|New Dotations|->", justify="center")
+        menu_table = Table(header_style="bold magenta")
+        menu_table.add_column("They buy me coffee!", justify="center")
         
         menu_table.add_row(
                 "-------"

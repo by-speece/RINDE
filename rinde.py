@@ -15,12 +15,9 @@ from rich.align import Align
 import readchar
 
 #UI Modules
-from Layout.menu_ui import *
-from Layout.info import *
-
-
-#Commands
-from modules.custom_commands import *
+from layout.rinde_ui import *
+from layout.info import *
+from layout.custom_commands import *
 
 
 #Colors

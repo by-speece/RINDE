@@ -13,6 +13,3 @@ from rich.style import Style
 def clear():
   os.system('clear')
 
-def Hotkeys():
-  console.print()
-
