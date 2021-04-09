@@ -51,24 +51,24 @@ def MainMenu():
          AppsConfigsMenu()
 
       if MainMenuInput == "4":
-         ExtraToolsMenu()
+         ExtraScrips()
 
       if MainMenuInput == "5":
          SettingsMenu()
 
       if MainMenuInput == "6":
          RindeSettingsMenu()
-
+#Hotkeys-start
       if MainMenuInput == "p":
          PowerMenu()
       
-      if MainMenuInput == "r":
+      if MainMenuInput == "b":
          MainMenu()
 
       if MainMenuInput == "q":
          clear()
          exit()
-
+#Hotkeys-end
       else:
          MainMenu()
 
@@ -96,9 +96,9 @@ def PacmanMenu():
          print('Cleaning Pacman and System Completed!')
          MainMenu()
 
-      if PacmanMenuInput == "3":
-         clear()
-         PacmanPackagesMenuUI()
+#Hotkeys-start
+      if PacmanMenuInput == "p":
+         PowerMenu()
       
       if PacmanMenuInput == "b":
          MainMenu()
@@ -106,42 +106,110 @@ def PacmanMenu():
       if PacmanMenuInput == "q":
          clear()
          exit()
-         
+#Hotkeys-end
       else:
          PacmanMenu()
 
+def YayMenu():
+      clear()
+      YayMenuLayout()
+      YayMenuInput = readchar.readkey()
+      if YayMenuInput == "1":
+         clear()
+         os.system('yay -Syu --noconfirm')
+         print('Update Complete')
+         MainMenu()
+
+      if YayMenuInput == "2":
+         clear()
+         os.system('yay -Syu --noconfirm')
+         os.system('yay -Sc --noconfirm')
+         os.system('yay -Rs $(yay -Qtdq) --noconfirm')
+         MainMenu()
+
+#Hotkeys-start
+      if YayMenuInput == "p":
+         PowerMenu()
+      
+      if YayMenuInput == "b":
+         MainMenu()
+
+      if YayMenuInput == "q":
+         clear()
+         exit()
+#Hotkeys-end
+      else:
+         YayMenu()
+
+def AppsConfigsMenu():
+      clear()
+      AppsConfigsMenuLayout()
+      AppsConfigsMenuInput = readchar.readkey()
+      if AppsConfigsMenuInput == "1":
+         clear()
+         os.system('sudo pacman -Syu samba --needed --noconfirm')
+         os.system('sudo cp -rf /etc/rinde/data/samba  /etc/samba')
+         os.system('sudo systemctl enable smb.service')
+         print("Please create samba user using command: smbpasswd -a user_name")
+         input("Press any key to continue...(pls dont press power button ;)")
+         MainMenu()
+
+      if AppsConfigsMenuInput == "2":
+         clear()
+         MainMenu()
+
+#Hotkeys-start
+      if AppsConfigsMenuInput == "p":
+         PowerMenu()
+      
+      if AppsConfigsMenuInput == "b":
+         MainMenu()
+
+      if AppsConfigsMenuInput == "q":
+         clear()
+         exit()
+#Hotkeys-end
+      else:
+         AppsConfigsMenu()
+
+def ExtraScrips():
+         clear()
+
+def SettingsMenu():
+         clear()
+
+def RindeSettingsMenu():
+         clear()
 
 def PowerMenu():
+      clear()
+      PowerMenuLayout()
+      PowerMenuInput = readchar.readkey()
+
+      if PowerMenuInput == "1":
+         os.system("shutdown now")
+         exit()
+
+      if PowerMenuInput == "2":
+         os.system("reboot now")
+         exit()
+
+      if PowerMenuInput == "3":
+         os.system("systemctl suspend")
+         MainMenu()
+#Hotkeys-start
+      if PowerMenuInput == "p":
+         PowerMenu()
+      
+      if PowerMenuInput == "b":
+         MainMenu()
+
+      if PowerMenuInput == "q":
          clear()
-         PowerMenuLayout()
-         PowerMenuInput = readchar.readkey()
-
-         if PowerMenuInput == "1":
-            os.system("shutdown now")
-            exit()
-
-         if PowerMenuInput == "2":
-            os.system("reboot now")
-            exit()
-
-         if PowerMenuInput == "3":
-            os.system("systemctl suspend")
-            MainMenu()
-         
-         if PowerMenuInput == "b":
-            MainMenu()
-
-         if PowerMenuInput == "q":
-            clear()
-            exit()
-
-         else:
-            PowerMenu()
-
-
-def ExtraToolsMenu():
-         clear()
-         console.print(Align.center(ExtraToolsMenuUI()))
+         exit()
+#Hotkeys-end
+      else:
+         PowerMenu()
 
 
 MainMenu()

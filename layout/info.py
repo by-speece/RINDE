@@ -23,10 +23,10 @@ def Author():
                 "Code Name",     "Spring Rain"
         )
         menu_table.add_row(
-                "Version",       "0.2.2-unstable"
+                "Version",       "0.2.3-unstable"
         )
         menu_table.add_row(
-                "Build",        "260321"
+                "Build",        "070421"
         )
         menu_table.add_row(
                 "Licence",      "GPL3"
@@ -36,17 +36,3 @@ def Author():
         )
         return menu_table
 
-def Coffee():
-        menu_table = Table(header_style="bold magenta")
-        menu_table.add_column("They buy me coffee!", justify="center")
-        
-        menu_table.add_row(
-                "-------"
-        )
-        menu_table.add_row(
-                "-------"
-        )
-        menu_table.add_row(
-                "-------"
-        )
-        return menu_table

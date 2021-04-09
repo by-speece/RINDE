@@ -36,7 +36,21 @@ class color:
 ###############################################################
 #########################UI SECTION############################
 ###############################################################
+def Hotkeys():
+        menu_table = Table(show_lines=True, header_style="bold magenta")
+        menu_table.add_column("Key", justify="center")
+        menu_table.add_column("Function", justify="center")
 
+        menu_table.add_row(
+                "p", "PowerMenu"
+        )
+        menu_table.add_row(
+                "b", "MainMenu"
+        )
+        menu_table.add_row(
+                "q", "Quit"
+        )
+        return menu_table
 
 def MainMenuUI():
         menu_table = Table(show_lines=True, header_style="bold magenta")
@@ -45,7 +59,7 @@ def MainMenuUI():
 
 
         menu_table.add_row(
-                "1",     "Pacman Settings"
+                "1",     "Package Manager"
         )
 
         menu_table.add_row(
@@ -57,7 +71,7 @@ def MainMenuUI():
         )
 
         menu_table.add_row(
-                "4",     "Extra tools"
+                "4",     "Extra scrips"
         )
 
         menu_table.add_row(
@@ -68,17 +82,6 @@ def MainMenuUI():
                 "6",     "RINDE Settings"
         )
 
-        menu_table.add_row(
-                "p",     "Power Menu"
-        )
-
-        menu_table.add_row(
-                "s",      "RINDE Shell"
-        )
-
-        menu_table.add_row(
-                "q",       "Quit"
-        )
 
         return menu_table
 
@@ -91,49 +94,40 @@ def PacmanMenuUI():
         menu_table.add_column("Module Name", justify="center")
 
         menu_table.add_row(
-                "1",        "Update Manager"
+                "1",        "Fast Update"
         )
 
         menu_table.add_row(
                 "2",        "Full Update"
         )
-
-        menu_table.add_row(
-                "3",        "Pacman Packs Packages"
-        )
-
-        menu_table.add_row(
-                "b",        "MainMenu"
-        )
-
-        menu_table.add_row(
-                "q",        "Quit"
-        )
-
         return menu_table
 
 
 
-def PacmanPackagesMenuUI():
+def YayMenuUI():
+        console = Console()
+        menu_table = Table(show_lines=True, show_header=True, header_style="bold magenta")
+        menu_table.add_column("Number", justify="center")
+        menu_table.add_column("Module", justify="center")
+
+        menu_table.add_row(
+                "1",        "Fast Update"
+        )
+        menu_table.add_row(
+                "2",        "Full Update"
+        )
+        return menu_table
+
+def AppsConfigsMenuUI():
         console = Console()
         menu_table = Table(show_header=True, header_style="bold magenta")
         menu_table.add_column("Number", justify="center")
-        menu_table.add_column("Package Pack Name", justify="center")
+        menu_table.add_column("Module", justify="center")
 
         menu_table.add_row(
-                "1",        ""
-        )
-
-        menu_table.add_row(
-                "b",        "MainMenu"
-        )
-
-        menu_table.add_row(
-                "q",        "Quit"
+                "1",        "Samba"
         )
         return menu_table
-
-
 
 
 def PowerMenuUI():
@@ -176,7 +170,7 @@ def MainMenuLayout():
       )
       layout["down"].ratio = 0.6
       layout["down"].update(
-         Panel(Align.center(Coffee(), vertical="middle"))
+         Panel(Align.center(Hotkeys(), vertical="middle"))
       )
 
       print(layout)
@@ -200,7 +194,7 @@ def PacmanMenuLayout():
       )
       layout["down"].ratio = 0.6
       layout["down"].update(
-         Panel(Align.center(Coffee(), vertical="middle"))
+         Panel(Align.center(Hotkeys(), vertical="middle"))
       )
       print(layout)
       #########################################################
@@ -223,9 +217,56 @@ def PowerMenuLayout():
       )
       layout["down"].ratio = 0.6
       layout["down"].update(
-         Panel(Align.center(Coffee(), vertical="middle"))
+         Panel(Align.center(Hotkeys(), vertical="middle"))
       )
       print(layout)
       #########################################################
       #Layout-END
 
+def YayMenuLayout():
+      #Layout-Start
+      #########################################################
+      layout = Layout()
+
+      layout.split(
+         Layout(name="left"),
+         Layout(Panel(Align.center(YayMenuUI(), vertical="middle"))),
+         direction="horizontal"
+      )
+
+      layout["left"].split(
+         Layout(Panel(Align.center(Author(), vertical="middle"))),
+         Layout(name="down")
+      )
+      layout["down"].ratio = 0.6
+      layout["down"].update(
+         Panel(Align.center(Hotkeys(), vertical="middle"))
+      )
+
+      print(layout)
+      #########################################################
+      #Layout-END
+
+def AppsConfigsMenuLayout():
+      #Layout-Start
+      #########################################################
+      layout = Layout()
+
+      layout.split(
+         Layout(name="left"),
+         Layout(Panel(Align.center(AppsConfigsMenuUI(), vertical="middle"))),
+         direction="horizontal"
+      )
+
+      layout["left"].split(
+         Layout(Panel(Align.center(Author(), vertical="middle"))),
+         Layout(name="down")
+      )
+      layout["down"].ratio = 0.6
+      layout["down"].update(
+         Panel(Align.center(Hotkeys(), vertical="middle"))
+      )
+
+      print(layout)
+      #########################################################
+      #Layout-END
