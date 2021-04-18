@@ -2,7 +2,7 @@
 
 import os
 import rich
-import pynput
+
 
 #Rich
 from rich import print
@@ -23,10 +23,10 @@ def Author():
                 "Code Name",     "Spring Rain"
         )
         menu_table.add_row(
-                "Version",       "0.2.3-unstable"
+                "Version",       "0.3.3-stable"
         )
         menu_table.add_row(
-                "Build",        "070421"
+                "Build",        "140421"
         )
         menu_table.add_row(
                 "Licence",      "GPL3"
