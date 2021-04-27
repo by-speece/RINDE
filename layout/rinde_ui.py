@@ -4,21 +4,22 @@ import os
 import rich
 
 #Rich
+from rich import print
 from rich.console import Console
 from rich.table import Table
 from rich.markdown import Markdown
 from rich.panel import Panel
 from rich.layout import Layout
 from rich.align import Align
+from rich.text import Text
 
 #Readchar - Key Reading Without Enter
 import readchar
 
 
 #UI Modules
-from layout.info import *
 from layout.rinde_ui import *
-from layout.custom_commands import *
+from data.version import *
 
 #Colors
 class color:
@@ -32,6 +33,8 @@ class color:
    BOLD = '\033[1m'
    UNDERLINE = '\033[4m'
    END = '\033[0m'
+
+
 
 ###############################################################
 #########################UI SECTION############################
@@ -132,7 +135,7 @@ def AppsConfigsMenuUI():
 
 def PowerMenuUI():
         console = Console()
-        menu_table = Table(show_header=True, header_style="bold magenta")
+        menu_table = Table(show_lines=True, show_header=True, header_style="bold magenta")
         menu_table.add_column("Number", justify="center")
         menu_table.add_column("Power Menu", justify="center")
 
@@ -145,6 +148,31 @@ def PowerMenuUI():
         menu_table.add_row(
                 "3",        "Suspend"
         )
+
+        return menu_table
+
+def RindeSettingsMenuUI():
+        console = Console()
+        menu_table = Table(show_lines=True, show_header=True, header_style="bold magenta")
+        menu_table.add_column("Number", justify="center")
+        menu_table.add_column("Module", justify="center")
+
+        menu_table.add_row(
+                "1",        "Autorun settings"
+        )
+        menu_table.add_row(
+                "2",        "Check/Install Rinde Update"
+        )
+        menu_table.add_row(
+                "3",        "Install rice"
+        )
+        menu_table.add_row(
+                "4",        "Speece Apps Packs(with speece repo)"
+        )
+        menu_table.add_row(
+                "5",        "Speece Apps Packs(without speece repo)"
+        )
+
 
         return menu_table
 
@@ -270,3 +298,28 @@ def AppsConfigsMenuLayout():
       print(layout)
       #########################################################
       #Layout-END
+
+def RindeSettingsMenuLayout():
+      #Layout-Start
+      #########################################################
+      layout = Layout()
+
+      layout.split(
+         Layout(name="left"),
+         Layout(Panel(Align.center(RindeSettingsMenuUI(), vertical="middle"))),
+         direction="horizontal"
+      )
+
+      layout["left"].split(
+         Layout(Panel(Align.center(Author(), vertical="middle"))),
+         Layout(name="down")
+      )
+      layout["down"].ratio = 0.6
+      layout["down"].update(
+         Panel(Align.center(Hotkeys(), vertical="middle"))
+      )
+
+      print(layout) 
+      #########################################################
+      #Layout-END
+

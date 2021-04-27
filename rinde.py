@@ -4,21 +4,21 @@ import os
 import rich
 
 #Rich
+from rich import print
 from rich.console import Console
 from rich.table import Table
 from rich.markdown import Markdown
 from rich.panel import Panel
 from rich.layout import Layout
 from rich.align import Align
+from rich.text import Text
 
 #Readchar - Key Reading Without Enter
 import readchar
 
 #UI Modules
 from layout.rinde_ui import *
-from layout.info import *
-from layout.custom_commands import *
-
+from data.version import *
 
 #Colors
 class color:
@@ -148,7 +148,7 @@ def AppsConfigsMenu():
       if AppsConfigsMenuInput == "1":
          clear()
          os.system('sudo pacman -Syu samba --needed --noconfirm')
-         os.system('sudo cp -rf /etc/rinde/data/samba  /etc/samba')
+         os.system('sudo cp -rf /etc/RINDE/data/samba  /etc/samba')
          os.system('sudo systemctl enable smb.service')
          print("Please create samba user using command: smbpasswd -a user_name")
          input("Press any key to continue...(pls dont press power button ;)")
@@ -177,9 +177,46 @@ def ExtraScrips():
 
 def SettingsMenu():
          clear()
-
+         
 def RindeSettingsMenu():
+      clear()
+      RindeSettingsMenuLayout()
+      RindeSettingsMenuInput = readchar.readkey()
+      if RindeSettingsMenuInput == "1":
+         RindeAutorunMenu()
          clear()
+         MainMenu()
+
+      if RindeSettingsMenuInput == "2":
+         clear()
+         MainMenu()
+      
+      if RindeSettingsMenuInput == "3":
+         os.system('sh data/rice/install.sh')
+         clear()
+         MainMenu()
+      
+      if RindeSettingsMenuInput == "4":
+         clear()
+         MainMenu()
+      
+      if RindeSettingsMenuInput == "5":
+         clear()
+         MainMenu()
+
+#Hotkeys-start
+      if RindeSettingsMenuInput == "p":
+         PowerMenu()
+      
+      if RindeSettingsMenuInput == "b":
+         MainMenu()
+
+      if RindeSettingsMenuInput == "q":
+         clear()
+         exit()
+#Hotkeys-end
+      else:
+         RindeSettingsMenu()
 
 def PowerMenu():
       clear()
@@ -210,6 +247,20 @@ def PowerMenu():
 #Hotkeys-end
       else:
          PowerMenu()
+
+#####################################################################################
+#####################################################################################
+#####################################################################################
+
+
+#Clearing console
+def clear():
+  os.system('clear')
+
+
+
+
+
 
 
 MainMenu()
