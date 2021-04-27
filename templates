@@ -1,0 +1,65 @@
+
+#Menu Template
+def TemplateMenu():
+      clear()
+      TemplateMenuLayout()
+      TemplateMenuInput = readchar.readkey()
+      if TemplateMenuInput == "1":
+         clear()
+         MainMenu()
+
+      if TemplateMenuInput == "2":
+         clear()
+         MainMenu()
+
+#Hotkeys-start
+      if TemplateMenuInput == "p":
+         PowerMenu()
+      
+      if TemplateMenuInput == "b":
+         MainMenu()
+
+      if TemplateMenuInput == "q":
+         clear()
+         exit()
+#Hotkeys-end
+      else:
+         TemplateMenu()
+         
+#MenuUI Template
+def TemplateMenuUI():
+        console = Console()
+        menu_table = Table(show_header=True, header_style="bold magenta")
+        menu_table.add_column("Number", justify="center")
+        menu_table.add_column("Module", justify="center")
+
+        menu_table.add_row(
+                "1",        ""
+
+
+        return menu_table
+
+#MenuLayout Template
+def TemplateMenuLayout():
+      #Layout-Start
+      #########################################################
+      layout = Layout()
+
+      layout.split(
+         Layout(name="left"),
+         Layout(Panel(Align.center(TemplateMenuUI(), vertical="middle"))),
+         direction="horizontal"
+      )
+
+      layout["left"].split(
+         Layout(Panel(Align.center(Author(), vertical="middle"))),
+         Layout(name="down")
+      )
+      layout["down"].ratio = 0.6
+      layout["down"].update(
+         Panel(Align.center(Hotkeys(), vertical="middle"))
+      )
+
+      print(layout) 
+      #########################################################
+      #Layout-END
