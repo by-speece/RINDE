@@ -172,11 +172,57 @@ def AppsConfigsMenu():
       else:
          AppsConfigsMenu()
 
-def ExtraScrips():
+def ExtraScripts():
+      clear()
+      ExtraScriptsLayout()
+      ExtraScriptsInput = readchar.readkey()
+      if ExtraScriptsInput == "1":
          clear()
+         MainMenu()
+
+      if ExtraScriptsInput == "2":
+         clear()
+         MainMenu()
+
+#Hotkeys-start
+      if ExtraScriptsInput == "p":
+         PowerMenu()
+      
+      if ExtraScriptsInput == "b":
+         MainMenu()
+
+      if ExtraScriptsInput == "q":
+         clear()
+         exit()
+#Hotkeys-end
+      else:
+         ExtraScripts()
 
 def SettingsMenu():
+      clear()
+      SettingsMenuLayout()
+      SettingsMenuInput = readchar.readkey()
+      if SettingsMenuInput == "1":
          clear()
+         MainMenu()
+
+      if SettingsMenuInput == "2":
+         clear()
+         MainMenu()
+
+#Hotkeys-start
+      if SettingsMenuInput == "p":
+         PowerMenu()
+      
+      if SettingsMenuInput == "b":
+         MainMenu()
+
+      if SettingsMenuInput == "q":
+         clear()
+         exit()
+#Hotkeys-end
+      else:
+         SettingsMenu()
          
 def RindeSettingsMenu():
       clear()
@@ -197,10 +243,12 @@ def RindeSettingsMenu():
          MainMenu()
       
       if RindeSettingsMenuInput == "4":
+         SpeeceAppsPacksRepo()
          clear()
          MainMenu()
       
       if RindeSettingsMenuInput == "5":
+         SpeeceAppsPackNoRepo()
          clear()
          MainMenu()
 

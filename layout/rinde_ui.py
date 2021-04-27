@@ -176,7 +176,29 @@ def RindeSettingsMenuUI():
 
         return menu_table
 
+def ExtraScriptsUI():
+        console = Console()
+        menu_table = Table(show_header=True, header_style="bold magenta")
+        menu_table.add_column("Number", justify="center")
+        menu_table.add_column("Module", justify="center")
 
+        menu_table.add_row(
+                "1",        ""
+
+
+        return menu_table
+
+def SettingsMenuUI():
+        console = Console()
+        menu_table = Table(show_header=True, header_style="bold magenta")
+        menu_table.add_column("Number", justify="center")
+        menu_table.add_column("Module", justify="center")
+
+        menu_table.add_row(
+                "1",        ""
+
+
+        return menu_table
 ###############################################################
 #########################Layout Section########################
 ###############################################################
@@ -323,3 +345,50 @@ def RindeSettingsMenuLayout():
       #########################################################
       #Layout-END
 
+def ExtraScriptsLayout():
+      #Layout-Start
+      #########################################################
+      layout = Layout()
+
+      layout.split(
+         Layout(name="left"),
+         Layout(Panel(Align.center(ExtraScriptsUI(), vertical="middle"))),
+         direction="horizontal"
+      )
+
+      layout["left"].split(
+         Layout(Panel(Align.center(Author(), vertical="middle"))),
+         Layout(name="down")
+      )
+      layout["down"].ratio = 0.6
+      layout["down"].update(
+         Panel(Align.center(Hotkeys(), vertical="middle"))
+      )
+
+      print(layout) 
+      #########################################################
+      #Layout-END
+
+def SettingsMenuLayout():
+      #Layout-Start
+      #########################################################
+      layout = Layout()
+
+      layout.split(
+         Layout(name="left"),
+         Layout(Panel(Align.center(SettingsMenuUI(), vertical="middle"))),
+         direction="horizontal"
+      )
+
+      layout["left"].split(
+         Layout(Panel(Align.center(Author(), vertical="middle"))),
+         Layout(name="down")
+      )
+      layout["down"].ratio = 0.6
+      layout["down"].update(
+         Panel(Align.center(Hotkeys(), vertical="middle"))
+      )
+
+      print(layout) 
+      #########################################################
+      #Layout-END
