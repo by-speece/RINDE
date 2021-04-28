@@ -184,7 +184,7 @@ def ExtraScriptsUI():
 
         menu_table.add_row(
                 "1",        ""
-
+        )
 
         return menu_table
 
